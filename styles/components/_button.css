@@ -1,18 +1,22 @@
 .button {
-  font-size: medium;
-  font-weight: bold;
+  font-size: large;
   border-radius: 50%;
-  margin: 2px;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0px;
 }
 .button--dark-gray {
-  background-color: #666464;
-  color: #fafafa;
+  background-color: #333;
+  color: white;
 }
 .button--light-gray {
-  background-color: #cecccc;
-  color: #666464;
+  background-color: #a5a5a5;
+  color: #333;
 }
 .button--yellow {
-  background-color: #f1b252;
-  color: #fafafa;
+  background-color: #f1a33c;
+  color: white;
 }

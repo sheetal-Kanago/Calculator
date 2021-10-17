@@ -1,18 +1,56 @@
 .button {
-  font-size: medium;
-  font-weight: bold;
+  font-size: large;
   border-radius: 50%;
-  margin: 2px;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0px;
 }
 .button--dark-gray {
-  background-color: #666464;
-  color: #fafafa;
+  background-color: #333;
+  color: white;
 }
 .button--light-gray {
-  background-color: #cecccc;
-  color: #666464;
+  background-color: #a5a5a5;
+  color: #333;
 }
 .button--yellow {
-  background-color: #f1b252;
-  color: #fafafa;
+  background-color: #f1a33c;
+  color: white;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
+  padding: 5px;
+}
+
+.container {
+  background-color: black;
+  width: 275px;
+  height: 500px;
+  border-radius: 50px;
+  padding: 25px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+}
+
+.button-2span {
+  grid-column: span 2;
+  width: 140px;
+  border-radius: 30px;
+  justify-content: left;
+  padding-left: 20px;
+}
+
+.display {
+  margin: 20px;
+  font-size: xxx-large;
+  color: white;
+  background-color: black;
+  width: 90%;
+  text-align: right;
+  margin-bottom: 50px;
 }
