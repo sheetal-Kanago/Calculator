@@ -13,7 +13,8 @@
 
   &--dark-gray{
     background-color: $dark-gray-color;
-    color: $white-color;
+    color: $light-gray-color
+    
   }
   &--light-gray{
     background-color: $light-gray-color;
@@ -23,6 +24,7 @@
     background-color: $yellow-color;
     color:$white-color;
   }
+
 
 }
 

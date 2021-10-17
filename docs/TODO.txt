@@ -1,7 +1,7 @@
 View:
 -chk font to use
 -chk media queries - can we keep same size on browser too?
--BEM - button--span2 does not overwrride in the _buttons.scss page
--make buttons light on hover
+-BEM - button--span2 does not overwrride in the _buttons.scss page. Same for hover.
+
 
 Operations:
