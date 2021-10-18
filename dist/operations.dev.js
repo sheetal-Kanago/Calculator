@@ -132,7 +132,7 @@ function evalAndDisplay() {
   if (displayStr.indexOf("+") > 0) {
     operator = "+";
 
-    var _displayStr$split = displayStr.split("+");
+    var _displayStr$split = displayStr.split(operator);
 
     var _displayStr$split2 = _slicedToArray(_displayStr$split, 2);
 
@@ -143,5 +143,49 @@ function evalAndDisplay() {
     displayStr = result.toString();
     console.log(displayStr);
     display.value = displayStr;
-  }
+  } else if (displayStr.indexOf("−") > 0) {
+    operator = "−";
+
+    var _displayStr$split3 = displayStr.split(operator);
+
+    var _displayStr$split4 = _slicedToArray(_displayStr$split3, 2);
+
+    leftOperand = _displayStr$split4[0];
+    rightOperand = _displayStr$split4[1];
+    console.log(leftOperand, operator, rightOperand);
+    result = parseInt(leftOperand) - parseInt(rightOperand);
+    displayStr = result.toString();
+    console.log(displayStr);
+    display.value = displayStr;
+  } else if (displayStr.indexOf("×") > 0) {
+    operator = "×";
+
+    var _displayStr$split5 = displayStr.split(operator);
+
+    var _displayStr$split6 = _slicedToArray(_displayStr$split5, 2);
+
+    leftOperand = _displayStr$split6[0];
+    rightOperand = _displayStr$split6[1];
+    console.log(leftOperand, operator, rightOperand);
+    result = parseInt(leftOperand) * parseInt(rightOperand);
+    displayStr = result.toString();
+    console.log(displayStr);
+    display.value = displayStr;
+  } else if (displayStr.indexOf("÷") > 0) {
+    operator = "÷";
+
+    var _displayStr$split7 = displayStr.split(operator);
+
+    var _displayStr$split8 = _slicedToArray(_displayStr$split7, 2);
+
+    leftOperand = _displayStr$split8[0];
+    rightOperand = _displayStr$split8[1];
+    console.log(leftOperand, operator, rightOperand);
+    result = parseInt(leftOperand) / parseInt(rightOperand);
+    displayStr = result.toString();
+    console.log(displayStr);
+    display.value = displayStr;
+  } //
+  //
+
 }

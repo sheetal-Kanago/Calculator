@@ -112,7 +112,6 @@ function handleClick(strKey) {
 function evalAndDisplay(){
   let result=0;
   //how do I write a generic split and evaluate instead of if/else for each operator?
-  
   // [leftOperand,operator,rightOperand]=displayStr.split("[\+]");
   // console.log(leftOperand,operator,rightOperand);
   
@@ -120,13 +119,39 @@ function evalAndDisplay(){
   //             Integers only  !!!!
   if(displayStr.indexOf("+") > 0){
     operator="+";
-    [leftOperand,rightOperand]=displayStr.split("+");
+    [leftOperand,rightOperand]=displayStr.split(operator);
     console.log(leftOperand,operator,rightOperand);
     result=parseInt(leftOperand)+parseInt(rightOperand);
     displayStr=result.toString();
     console.log(displayStr);
     display.value=displayStr;
+  }else if(displayStr.indexOf("−") > 0){
+    operator="−";
+    [leftOperand,rightOperand]=displayStr.split(operator);
+    console.log(leftOperand,operator,rightOperand);
+    result=parseInt(leftOperand)-parseInt(rightOperand);
+    displayStr=result.toString();
+    console.log(displayStr);
+    display.value=displayStr;
+  }else if(displayStr.indexOf("×") > 0){
+    operator="×";
+    [leftOperand,rightOperand]=displayStr.split(operator);
+    console.log(leftOperand,operator,rightOperand);
+    result=parseInt(leftOperand)*parseInt(rightOperand);
+    displayStr=result.toString();
+    console.log(displayStr);
+    display.value=displayStr;
+  }else if(displayStr.indexOf("÷") > 0){
+    operator="÷";
+    [leftOperand,rightOperand]=displayStr.split(operator);
+    console.log(leftOperand,operator,rightOperand);
+    result=parseInt(leftOperand)/parseInt(rightOperand);
+    displayStr=result.toString();
+    console.log(displayStr);
+    display.value=displayStr;    
   }
+  //
+  //
 
 
 
