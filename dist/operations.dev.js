@@ -1,5 +1,13 @@
 "use strict";
 
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 //variables
 var leftOperand = 0,
     rightOperand = 0,
@@ -42,10 +50,12 @@ buttons.forEach(function (button) {
 //-------------------------------------------
 //MUST HAVE:
 //Take left and right operands and evaluate when = is clicked
+//Q//how do I write a generic split and evaluate instead of if/else for each operator?
+//chained operations - when second operator is clicked, evaluate prev expr and store result in left operand
 //handle decimals
 //GOOD TO HAVE
 //add comma at thousands place.
-//Keep typed string in a varable. When = is clicked, evaluate the string and display result
+//handle length of input > display - reduce font? till when??
 //
 
 function handleClick(strKey) {
@@ -53,7 +63,8 @@ function handleClick(strKey) {
 
   switch (strKey) {
     case "C":
-      console.log("strKey => ", strKey);
+      displayStr = "0";
+      display.value = displayStr;
       return;
 
     case "±":
@@ -67,29 +78,20 @@ function handleClick(strKey) {
       return;
 
     case "÷":
-      console.log("strKey => ", strKey);
-      return;
-
     case "×":
-      console.log("strKey => ", strKey);
-      return;
-
     case "−":
-      console.log("strKey => ", strKey);
-      return;
-
     case "+":
-      console.log("strKey => ", strKey);
+      displayStr = displayStr + strKey;
+      display.value = displayStr;
       return;
 
     case "=":
-      console.log("strKey => ", strKey);
+      //evaluate expr and display
+      evalAndDisplay(); // console.log("strKey => ", strKey);
+
       return;
 
     case "0":
-      console.log("strKey => ", strKey);
-      return;
-
     case "1":
     case "2":
     case "3":
@@ -100,7 +102,13 @@ function handleClick(strKey) {
     case "8":
     case "9":
       // console.log("strKey => ", strKey);
-      displayStr = displayStr + strKey;
+      if (displayStr === "0") {
+        console.log("in displayStr=0");
+        displayStr = strKey;
+      } else {
+        displayStr = displayStr + strKey;
+      }
+
       display.value = displayStr;
       return;
 
@@ -111,5 +119,29 @@ function handleClick(strKey) {
     default:
       console.log("Default case");
       return;
+  }
+}
+
+function evalAndDisplay() {
+  var result = 0; //how do I write a generic split and evaluate instead of if/else for each operator?
+  // [leftOperand,operator,rightOperand]=displayStr.split("[\+]");
+  // console.log(leftOperand,operator,rightOperand);
+  //Assumptions: Only 1 operator!!!!
+  //             Integers only  !!!!
+
+  if (displayStr.indexOf("+") > 0) {
+    operator = "+";
+
+    var _displayStr$split = displayStr.split("+");
+
+    var _displayStr$split2 = _slicedToArray(_displayStr$split, 2);
+
+    leftOperand = _displayStr$split2[0];
+    rightOperand = _displayStr$split2[1];
+    console.log(leftOperand, operator, rightOperand);
+    result = parseInt(leftOperand) + parseInt(rightOperand);
+    displayStr = result.toString();
+    console.log(displayStr);
+    display.value = displayStr;
   }
 }

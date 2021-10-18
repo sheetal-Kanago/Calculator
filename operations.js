@@ -44,22 +44,20 @@ buttons.forEach(button => button.addEventListener("click", () => handleClick(but
 //-------------------------------------------
 //MUST HAVE:
 //Take left and right operands and evaluate when = is clicked
-
+//Q//how do I write a generic split and evaluate instead of if/else for each operator?
+//chained operations - when second operator is clicked, evaluate prev expr and store result in left operand
 //handle decimals
 
 //GOOD TO HAVE
 //add comma at thousands place.
-
-
-//Keep typed string in a varable. When = is clicked, evaluate the string and display result
-
-
+//handle length of input > display - reduce font? till when??
 //
 function handleClick(strKey) {
   console.log("Starting handleClick(" + strKey + ")");
   switch (strKey) {
     case ("C"):
-      console.log("strKey => ", strKey);
+      displayStr="0";
+      display.value=displayStr;
       return;
     case ("±")://evaluate and then applu -/+
       console.log("strKey => ", strKey);
@@ -69,24 +67,20 @@ function handleClick(strKey) {
       return;
 
     case ("÷"):
-      console.log("strKey => ", strKey);
-      return;
     case ("×"):
-      console.log("strKey => ", strKey);
-      return;
     case ("−"):
-      console.log("strKey => ", strKey);
-      return;
     case ("+"):
-      console.log("strKey => ", strKey);
+      displayStr=displayStr+strKey;
+      display.value=displayStr;
       return;
     case ("="):
-      console.log("strKey => ", strKey);
+    //evaluate expr and display
+    evalAndDisplay();  
+    // console.log("strKey => ", strKey);
+      
       return;
 
-    case ("0"):
-      console.log("strKey => ", strKey);
-      return;
+    case ("0"):      
     case ("1"):
     case ("2"):
     case ("3"):
@@ -97,7 +91,13 @@ function handleClick(strKey) {
     case ("8"):
     case ("9"):
       // console.log("strKey => ", strKey);
-      displayStr=displayStr+strKey;
+      if (displayStr==="0"){
+        console.log("in displayStr=0");
+        displayStr=strKey;
+      }else{
+        displayStr=displayStr+strKey;
+      }
+      
       display.value=displayStr;
       return;
     case ("."):
@@ -107,4 +107,27 @@ function handleClick(strKey) {
       console.log("Default case");
       return;
   }
+}
+
+function evalAndDisplay(){
+  let result=0;
+  //how do I write a generic split and evaluate instead of if/else for each operator?
+  
+  // [leftOperand,operator,rightOperand]=displayStr.split("[\+]");
+  // console.log(leftOperand,operator,rightOperand);
+  
+  //Assumptions: Only 1 operator!!!!
+  //             Integers only  !!!!
+  if(displayStr.indexOf("+") > 0){
+    operator="+";
+    [leftOperand,rightOperand]=displayStr.split("+");
+    console.log(leftOperand,operator,rightOperand);
+    result=parseInt(leftOperand)+parseInt(rightOperand);
+    displayStr=result.toString();
+    console.log(displayStr);
+    display.value=displayStr;
+  }
+
+
+
 }

@@ -17,4 +17,3 @@ Operations:
 
 //Keep typed string in a varable. When = is clicked, evaluate the string and display result
 
-//handle length of input
