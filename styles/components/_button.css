@@ -20,3 +20,13 @@
   background-color: #f1a33c;
   color: white;
 }
+.button--2span {
+  grid-column: span 2;
+  width: 140px;
+  border-radius: 30px;
+  justify-content: left;
+  padding-left: 20px;
+}
+.button:hover {
+  filter: brightness(130%);
+}

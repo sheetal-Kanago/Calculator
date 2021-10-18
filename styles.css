@@ -10,7 +10,7 @@
 }
 .button--dark-gray {
   background-color: #333;
-  color: white;
+  color: #a5a5a5;
 }
 .button--light-gray {
   background-color: #a5a5a5;
@@ -19,6 +19,16 @@
 .button--yellow {
   background-color: #f1a33c;
   color: white;
+}
+.button--2span {
+  grid-column: span 2;
+  width: 140px;
+  border-radius: 30px;
+  justify-content: left;
+  padding-left: 20px;
+}
+.button:hover {
+  filter: brightness(130%);
 }
 
 .buttons {
@@ -35,14 +45,6 @@
   border-radius: 50px;
   padding: 25px;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
-}
-
-.button-2span {
-  grid-column: span 2;
-  width: 140px;
-  border-radius: 30px;
-  justify-content: left;
-  padding-left: 20px;
 }
 
 .button:hover {

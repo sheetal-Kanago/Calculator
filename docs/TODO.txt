@@ -1,7 +1,20 @@
 View:
--chk font to use
--chk media queries - can we keep same size on browser too?
+-chk font to use 
+-chk media queries - can we keep same size on browser too?should be responsive.
 -BEM - button--span2 does not overwrride in the _buttons.scss page. Same for hover.
-
+-White line at bottom
 
 Operations:
+//get each DOM element in a const.
+
+//Add event listeners to all buttons - any way to do this in a batch?
+
+//On number click - display it
+
+//add comma at thousands place.
+
+//handle decimals
+
+//Keep typed string in a varable. When = is clicked, evaluate the string and display result
+
+//handle length of input
