@@ -12,7 +12,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var leftOperand = 0,
     rightOperand = 0,
     operator = "";
-var displayStr = ""; //get each button and attach listener.
+var displayStr = "";
+var binaryOperators = ["÷", "×", "−", "+"]; //get each button and attach listener.
 
 var display = document.querySelector(".display");
 var buttons = document.querySelectorAll(".button");
@@ -23,7 +24,7 @@ buttons.forEach(function (button) {
 }); //-------------------------------------------
 //MUST HAVE:
 //DONE//Take left and right operands and evaluate when = is clicked
-//When +/- or % is clicked, evaluate the expr and then apply these operators. 
+//DONE//When +/- or % is clicked, evaluate the expr and then apply these operators. 
 //Q//how do I write a generic split and evaluate instead of if/else for each operator?
 //chained operations - when second operator is clicked, evaluate prev expr and store result in left operand
 //handle decimals
@@ -63,9 +64,28 @@ function handleClick(strKey) {
     case "×":
     case "−":
     case "+":
-      displayStr = displayStr + strKey;
-      display.value = displayStr;
-      return;
+      //chained operations
+      //If displayStr does not contains any of the 4 operators: Evaluate and display.
+      if (binaryOperators.every(function (binaryOperator) {
+        return displayStr.indexOf(binaryOperator) < 0;
+      })) {
+        displayStr = displayStr + strKey;
+        display.value = displayStr;
+        return;
+      } else {
+        //If an operator (assuming only 1) is already present in displayStr then...
+        //Evaluate displayStr
+        result = evaluateExpr();
+        console.log("chained op - result=", result); //Put it in Left operand
+
+        leftOperand = result.toString();
+        console.log("chained op - leftOperand=", leftOperand); //display left operand and the new operator
+
+        displayStr = leftOperand + strKey;
+        display.value = displayStr;
+      }
+
+    //end chained operations
 
     case "=":
       //evaluate expr and display
@@ -122,7 +142,7 @@ function evaluateExpr() {
 
     leftOperand = _displayStr$split2[0];
     rightOperand = _displayStr$split2[1];
-    console.log(leftOperand, operator, rightOperand);
+    console.log("evaluateExpr==>", leftOperand, operator, rightOperand);
     result = parseInt(leftOperand) + parseInt(rightOperand);
   } else if (displayStr.indexOf("−") > 0) {
     operator = "−";
@@ -133,7 +153,7 @@ function evaluateExpr() {
 
     leftOperand = _displayStr$split4[0];
     rightOperand = _displayStr$split4[1];
-    console.log(leftOperand, operator, rightOperand);
+    console.log("evaluateExpr==>", leftOperand, operator, rightOperand);
     result = parseInt(leftOperand) - parseInt(rightOperand);
   } else if (displayStr.indexOf("×") > 0) {
     operator = "×";
@@ -144,7 +164,7 @@ function evaluateExpr() {
 
     leftOperand = _displayStr$split6[0];
     rightOperand = _displayStr$split6[1];
-    console.log(leftOperand, operator, rightOperand);
+    console.log("evaluateExpr==>", leftOperand, operator, rightOperand);
     result = parseInt(leftOperand) * parseInt(rightOperand);
   } else if (displayStr.indexOf("÷") > 0) {
     operator = "÷";
@@ -155,7 +175,7 @@ function evaluateExpr() {
 
     leftOperand = _displayStr$split8[0];
     rightOperand = _displayStr$split8[1];
-    console.log(leftOperand, operator, rightOperand);
+    console.log("evaluateExpr==>", leftOperand, operator, rightOperand);
     result = parseInt(leftOperand) / parseInt(rightOperand);
   } else {
     result = parseInt(displayStr);

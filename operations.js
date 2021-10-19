@@ -3,6 +3,7 @@ let leftOperand = 0,
   rightOperand = 0,
   operator = "";
 let displayStr = "";
+const binaryOperators=["÷",  "×",  "−",  "+"]
 
 //get each button and attach listener.
 const display = document.querySelector(".display");
@@ -14,12 +15,11 @@ buttons.forEach(button => button.addEventListener("click", () => handleClick(but
 //DONE//Take left and right operands and evaluate when = is clicked
 //DONE//When +/- or % is clicked, evaluate the expr and then apply these operators. 
 //Q//how do I write a generic split and evaluate instead of if/else for each operator?
+//DONE//chained operations - when second operator is clicked, evaluate prev expr and store result in left operand
 //handle decimals
 
 
-
 //GOOD TO HAVE
-//chained operations - when second operator is clicked, evaluate prev expr and store result in left operand
 //add comma at thousands place.
 //handle length of input > display - reduce font? till when??
 //
@@ -48,9 +48,25 @@ function handleClick(strKey) {
     case ("×"):
     case ("−"):
     case ("+"):
-      displayStr=displayStr+strKey;
-      display.value=displayStr;
+      //chained operations
+      //If displayStr does not contains any of the 4 operators: Evaluate and display.
+      if(binaryOperators.every((binaryOperator)=> displayStr.indexOf(binaryOperator)<0)){
+        displayStr=displayStr+strKey;
+        display.value=displayStr;
+        return;
+      }else{ //If an operator (assuming only 1) is already present in displayStr then...
+        //Evaluate displayStr
+        result=evaluateExpr();
+        console.log("chained op - result=", result);
+        //Put it in Left operand
+        leftOperand=result.toString();
+        console.log("chained op - leftOperand=", leftOperand);
+        //display left operand and the new operator
+        displayStr=leftOperand+strKey;
+        display.value=displayStr;        
+      }      
       return;
+      //end chained operations
     case ("="):
       //evaluate expr and display
       result=evaluateExpr();  
@@ -99,24 +115,25 @@ function evaluateExpr(){
   if(displayStr.indexOf("+") > 0){
     operator="+";
     [leftOperand,rightOperand]=displayStr.split(operator);
-    console.log(leftOperand,operator,rightOperand);
+    console.log("evaluateExpr==>", leftOperand,operator,rightOperand);
     result=parseInt(leftOperand)+parseInt(rightOperand);
   }else if(displayStr.indexOf("−") > 0){
     operator="−";
     [leftOperand,rightOperand]=displayStr.split(operator);
-    console.log(leftOperand,operator,rightOperand);
+    console.log("evaluateExpr==>", leftOperand,operator,rightOperand);
     result=parseInt(leftOperand)-parseInt(rightOperand);
   }else if(displayStr.indexOf("×") > 0){
     operator="×";
     [leftOperand,rightOperand]=displayStr.split(operator);
-    console.log(leftOperand,operator,rightOperand);
+    console.log("evaluateExpr==>", leftOperand,operator,rightOperand);
     result=parseInt(leftOperand)*parseInt(rightOperand);
   }else if(displayStr.indexOf("÷") > 0){
     operator="÷";
     [leftOperand,rightOperand]=displayStr.split(operator);
-    console.log(leftOperand,operator,rightOperand);
+    console.log("evaluateExpr==>", leftOperand,operator,rightOperand);
     result=parseInt(leftOperand)/parseInt(rightOperand);     
   }else{
+
     result=parseInt(displayStr);
   }
   return result;
