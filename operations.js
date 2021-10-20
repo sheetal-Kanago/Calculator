@@ -142,7 +142,7 @@ function evaluateExpr(){
   // console.log(leftOperand,operator,rightOperand);
   
   //Assumptions: Only 1 operator!!!!
-  //             Integers only  !!!!
+ 
   if(displayStr.indexOf("+") > 0){
     operator="+";
     [leftOperand,rightOperand]=displayStr.split(operator);
