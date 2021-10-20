@@ -17,7 +17,7 @@ buttons.forEach(button => button.addEventListener("click", () => handleClick(but
 //Q//how do I write a generic split and evaluate instead of if/else for each operator? -- regex to be discssed next week. Ignore for now
 
 //DONE//chained operations - when second operator is clicked, evaluate prev expr and store result in left operand
-//handle decimals - trailing zeros. Multiple decimal places. //004.000500
+//DONE//handle decimals - trailing zeros. Multiple decimal places. //004.000500
 //e- for small decimals
 
 //GOOD TO HAVE
